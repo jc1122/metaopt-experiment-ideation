@@ -1,0 +1,12 @@
+# Catalog metadata for OpenAI/Codex-style runtimes.
+# This file is not consumed by the GitHub Copilot orchestration runtime described in SKILL.md.
+interface:
+  display_name: "Metaopt Experiment Ideation"
+  short_description: "Generate non-overlapping ML experiment proposals for metaoptimization campaigns"
+  categories:
+    - ml
+    - research
+  default_prompt: >
+    Generate experiment proposals for the current metaoptimization campaign.
+    Read the provided campaign context, baselines, and prior learnings,
+    then produce concrete, non-overlapping proposal candidates.
