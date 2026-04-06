@@ -35,7 +35,7 @@ The orchestrator supplies all inputs as structured context in the subagent promp
 |-------|------|-------------|
 | `goal` | string | The campaign's top-level improvement goal |
 | `metric` | string | The objective metric being optimized |
-| `objective_direction` | string | `minimize` or `maximize` |
+| `direction` | string | `"minimize"` or `"maximize"` |
 | `aggregation_method` | string | How per-dataset scores combine (e.g. `mean`, `weighted_mean`) |
 | `aggregation_weights` | object or null | Per-dataset weights when method is `weighted_mean`; `null` otherwise |
 | `aggregate_baseline` | number | Current aggregate baseline score |
@@ -102,7 +102,7 @@ If the proposal pool is already at `next_cap`, return no proposals and instead r
 
 6. **Leverage learnings.** Use `key_learnings` and `completed_experiments` to avoid repeating failed approaches and to build on successful directions.
 
-7. **Respect objective direction.** Proposals must target improvement in the direction specified by `objective_direction`. A proposal for a metric that moves in the wrong direction is invalid.
+7. **Respect objective direction.** Proposals must target improvement in the direction specified by `direction`. A proposal for a metric that moves in the wrong direction is invalid.
 
 8. **Scope to campaign goal.** All proposals must be relevant to the stated `goal` and `metric`. Off-topic proposals waste selection cycles.
 
