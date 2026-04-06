@@ -121,6 +121,12 @@ If the proposal pool is already at `next_cap`, return no proposals and instead r
 | Duplicating proposals already in the current pool | Diff against all entries in `current_proposal_pool` and `next_proposal_pool_context` |
 | Including implementation code in the proposal | Proposals describe what to try and why, never how to implement it in code |
 
+## Dispatch Metadata
+
+- **Lane:** ideation (background slot class)
+- **Model class:** `general_worker`
+- **Dispatched by:** `MAINTAIN_BACKGROUND_POOL` state
+
 ## References
 
 This skill is part of the `ml-metaoptimization` orchestrator ecosystem:
