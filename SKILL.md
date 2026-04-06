@@ -54,9 +54,9 @@ Return one or more proposal candidates. Each proposal must include:
 | `title` | string | Concise name for the experiment (≤ 12 words) |
 | `rationale` | string | Short explanation of the hypothesis and why it may improve the metric |
 | `expected_impact` | object | `{ direction: "improve" \| "neutral", magnitude: "small" \| "medium" \| "large" }` |
-| `target_aspect` | string | Which pipeline aspect this targets (see allowed values below) |
+| `target_area` | string | Which pipeline area this targets (see allowed values below) |
 
-### Allowed `target_aspect` Values
+### Allowed `target_area` Values
 
 - `feature_engineering`
 - `model_architecture`
