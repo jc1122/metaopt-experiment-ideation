@@ -20,14 +20,24 @@ Model class: `general_worker` (prefer a capable general model like GPT-5.4, fall
 
 The orchestrator supplies all inputs as structured context in the subagent prompt. This skill never reads files directly from the campaign repo.
 
-Required inputs:
+### Standard Envelope (provided by orchestrator on every dispatch)
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `campaign_id` | string | Campaign identifier |
+| `current_iteration` | integer | Current iteration number |
+| `slot_id` | string | The slot ID dispatching this worker |
+| `attempt` | integer | Attempt number for this dispatch (1-indexed) |
+
+### Campaign Context
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `goal` | string | The campaign's top-level improvement goal |
 | `metric` | string | The objective metric being optimized |
 | `objective_direction` | string | `minimize` or `maximize` |
-| `aggregation` | string | How per-dataset scores combine into the aggregate metric |
+| `aggregation_method` | string | How per-dataset scores combine (e.g. `mean`, `weighted_mean`) |
+| `aggregation_weights` | object or null | Per-dataset weights when method is `weighted_mean`; `null` otherwise |
 | `aggregate_baseline` | number | Current aggregate baseline score |
 | `per_dataset_baselines` | map | Baseline score for each dataset |
 | `key_learnings` | list | Learnings extracted from prior iterations |
@@ -47,7 +57,9 @@ Required inputs:
 
 ## Output Contract
 
-Return one or more proposal candidates. Each proposal must include:
+Return one or more proposal **candidates**. The orchestrator enriches each candidate with `proposal_id`, `source_slot_id`, `creation_iteration`, and `created_at` before persisting — workers must NOT generate these fields.
+
+Each candidate must include:
 
 | Field | Type | Description |
 |-------|------|-------------|
